@@ -9,6 +9,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Google maps Markers'),
+        //
         centerTitle: true,
       ),
       body: Center(child: MapsView()),
