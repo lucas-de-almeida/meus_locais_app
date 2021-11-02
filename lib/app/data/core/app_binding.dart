@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:meus_locais_app/app/data/repository/maps_repository.dart';
-
-import 'package:meus_locais_app/app/modules/maps/controller.dart/maps_controller.dart';
+import 'package:meus_locais_app/app/modules/maps/controller/maps_controller.dart';
 
 class AppBinding implements Bindings {
   @override

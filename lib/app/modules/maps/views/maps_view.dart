@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:meus_locais_app/app/modules/maps/controller.dart/maps_controller.dart';
+import 'package:meus_locais_app/app/modules/maps/controller/maps_controller.dart';
 
 class MapsView extends GetView<MapsController> {
   @override

@@ -2,8 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:meus_locais_app/app/data/model/map_type.dart';
-import 'package:meus_locais_app/app/modules/maps/controller.dart/maps_controller.dart';
-import 'package:meus_locais_app/app/modules/home/controllers/home_controller.dart';
+import 'package:meus_locais_app/app/modules/maps/controller/maps_controller.dart';
 
 class HomeController extends GetxController {
   final _initialPage = 0.obs;
