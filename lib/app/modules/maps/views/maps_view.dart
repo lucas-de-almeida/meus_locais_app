@@ -1,25 +1,27 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:meus_locais_app/app/modules/maps/controller/maps_controller.dart';
+
+import '../controllers/maps_controller.dart';
 
 class MapsView extends GetView<MapsController> {
   @override
   Widget build(BuildContext context) {
-    return controller.obx(
-      (state) => Obx(
-        () => GoogleMap(
+    return Obx(() => GoogleMap(
           initialCameraPosition: CameraPosition(
-            target: controller.initialPositionMap,
+            target: LatLng(
+              controller.userLocation.latitude,
+              controller.userLocation.longitude,
+            ),
             zoom: 2,
           ),
-          zoomControlsEnabled: true,
-          markers: controller.markers,
           myLocationButtonEnabled: true,
+          markers: controller.markers,
           myLocationEnabled: true,
-          buildingsEnabled: false,
-        ),
-      ),
-    );
+          onLongPress: (LatLng position) async {
+            await controller.addNewPosition(position);
+          },
+        ));
   }
 }

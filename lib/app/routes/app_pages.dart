@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:meus_locais_app/app/modules/home/bindigns/home_binding.dart';
+
+import 'package:meus_locais_app/app/modules/home/bindings/home_binding.dart';
 import 'package:meus_locais_app/app/modules/home/views/home_view.dart';
 import 'package:meus_locais_app/app/modules/maps/bindings/maps_binding.dart';
 import 'package:meus_locais_app/app/modules/maps/views/maps_view.dart';
