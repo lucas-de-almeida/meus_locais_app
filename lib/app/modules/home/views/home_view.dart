@@ -1,15 +1,12 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
 
 import 'package:get/get.dart';
-import 'package:google_maps_webservice/places.dart';
 
 import 'package:meus_locais_app/app/modules/maps/views/maps_view.dart';
 
 import '../controllers/home_controller.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class HomeView extends GetView<HomeController> {
   @override
