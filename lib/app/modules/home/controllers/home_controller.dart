@@ -1,32 +1,62 @@
-// ignore_for_file: unused_import, unnecessary_this
+// ignore_for_file: import_of_legacy_library_into_null_safe
 
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:meus_locais_app/app/data/model/map_type.dart';
-import 'package:meus_locais_app/app/modules/maps/controller/maps_controller.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'package:meus_locais_app/app/data/repository/home_repository.dart';
+import 'package:meus_locais_app/app/modules/maps/controllers/maps_controller.dart';
 
 class HomeController extends GetxController {
-  final _initialPage = 0.obs;
-  final _mapController = Get.find<MapsController>();
+  MapsController mapsController = Get.find<MapsController>();
+  final HomeRepoisotry repository;
 
-  int get initialPage => this._initialPage.value;
+  HomeController(this.repository);
+  @override
+  void onInit() async {
+    super.onInit();
+  }
 
   @override
-  void onInit() {
-    super.onInit();
-    _mapController.setInitialPosition(-23.5649267, -46.6519566);
-
-    ever(_initialPage, (_page) {
-      if (_page == 0) {
-        _mapController.getMarkers(type: MyMapTyes.regular);
-      } else {
-        _mapController.getMarkers(type: MyMapTyes.custom);
-      }
-    });
+  void onReady() {
+    super.onReady();
   }
 
   @override
   void onClose() {}
-  changePage(int page) {
-    _initialPage.value = page;
+
+  Future<void> addMarkerCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best);
+
+      mapsController.userLocation = position;
+      mapsController
+          .addNewPosition(LatLng(position.latitude, position.longitude));
+    } on Exception catch (_) {}
+  }
+
+  void removeAllMarkers() async {
+    bool? remove = await Get.defaultDialog(
+      title: "Remove all markers",
+      content: Text(
+        "Are you sure you want to delete all markers?",
+      ),
+      confirm: OutlinedButton(
+          onPressed: () {
+            Get.back(result: true);
+          },
+          child: Text("Yes!")),
+      cancel: OutlinedButton(
+          onPressed: () {
+            Get.back(result: false);
+          },
+          child: Text("No!")),
+    );
+
+    if (remove != false && remove != null) {
+      mapsController.clearAllMarkers();
+    }
   }
 }

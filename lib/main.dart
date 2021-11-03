@@ -1,16 +1,24 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:meus_locais_app/app/data/core/app_binding.dart';
+import 'package:meus_locais_app/app/core/initialize_app.dart';
+
 import 'package:meus_locais_app/app/routes/app_pages.dart';
 
-void main() {
-  runApp(GetMaterialApp(
-    initialRoute: AppPages.INITIAL,
-    getPages: AppPages.routes,
-    initialBinding: AppBinding(),
-  ));
+void main() async {
+  await InitializeApp.initialize();
+  SystemChannels.textInput.invokeMethod('TextInput.hide');
+
+  runApp(
+    GetMaterialApp(
+      title: "Application",
+      initialRoute: AppPages.INITIAL,
+      debugShowCheckedModeBanner: false,
+      getPages: AppPages.routes,
+    ),
+  );
 }
 
 
