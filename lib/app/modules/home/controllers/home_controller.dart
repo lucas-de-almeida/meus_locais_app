@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_webservice/places.dart';
-import 'package:hive/hive.dart';
 
 import 'package:meus_locais_app/app/data/repository/home_repository.dart';
 import 'package:meus_locais_app/app/modules/maps/controllers/maps_controller.dart';
@@ -61,23 +59,4 @@ class HomeController extends GetxController {
       mapsController.clearAllMarkers();
     }
   }
-
-  // Future<List<Prediction>> findAddress(String pattern,
-  //     {String language = 'en'}) async {
-  //   if (pattern.length > 3) {
-  //     return await repository.findAddress(pattern, language: language);
-  //   } else {
-  //     return [];
-  //   }
-  // }
-
-  // Future selectSuggestion(Prediction suggestion) async {
-  //   Get.dialog(LoadingWidget());
-  //   PlacesDetailsResponse detail =
-  //       await repository.getGooglePlacesDetail(suggestion.placeId ?? '');
-  //   Get.close(1);
-  //   Get.find<MapsController>().addNewPosition(LatLng(
-  //       detail.result.geometry!.location.lat,
-  //       detail.result.geometry!.location.lng));
-  // }
 }
